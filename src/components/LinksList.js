@@ -1,10 +1,10 @@
 import React, { Fragment, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-/*import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'*/
+import { NavLink } from 'react-router-dom'
 import { listRequest } from '../actions/actionCreators'
 
 export default function LinksList() {
-  const {links, loading, error} = useSelector(state => state.linksList);
+  const {list, loading, error} = useSelector(state => state.linksList);
   const dispatch = useDispatch();
   
   useEffect(() => {
@@ -22,10 +22,16 @@ export default function LinksList() {
       <p>Some error</p>
     )
   }
-  console.log('LINKS',links)
+
   return (
     <Fragment>
-      <p>list</p>
+      <ul>
+        {list.map(o => (
+          <li key={o.id}>
+            <NavLink to={`/${o.id}/details`}>{o.name}</NavLink>
+          </li>
+        ))}
+      </ul>
     </Fragment>
   )
 }

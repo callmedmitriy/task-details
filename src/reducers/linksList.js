@@ -5,7 +5,7 @@ import {
 } from '../actions/actionTypes'
 
 const initialState = {
-  links: [],
+  list: [],
   loading: false,
   error: null,
 }
@@ -26,7 +26,6 @@ export default function linksListReducer(state = initialState, action) {
         error: error,
       }
     case LIST_SUCCESS:
-      console.log('success list',action.payload)
       const { list } = action.payload
       return {
         ...state,
